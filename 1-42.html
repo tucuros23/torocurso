@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Video</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at top,
+    #1e1e1e 0%,
+    #0c0c0c 40%,
+    #000 100%);
+    font-family:
+    Arial,
+    sans-serif;
+}
+
+/* CONTENEDOR */
+.page-wrapper{
+    width:100%;
+    min-height:100vh;
+    position:relative;
+}
+
+/* BOTÓN TELEGRAM */
+.telegram-top{
+    position:fixed;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:99999;
+}
+
+.telegram-btn{
+    text-decoration:none;
+    color:#fff;
+    background:
+    linear-gradient(
+        135deg,
+        #27A5E7,
+        #0088cc
+    );
+    padding:12px 24px;
+    border-radius:999px;
+    font-size:16px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    box-shadow:
+    0 8px 30px
+    rgba(39,165,231,.30);
+    transition:.25s ease;
+}
+
+.telegram-btn:hover{
+    transform:scale(1.05);
+}
+
+/* CONTENEDOR VIDEO */
+.video-container{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:
+    85px 12px 20px;
+}
+
+/* VIDEO MÓVIL TIKTOK */
+.video-shell{
+    width:100%;
+    max-width:430px;
+    height:calc(100vh - 115px);
+    border-radius:28px;
+    overflow:hidden;
+    background:#000;
+    position:relative;
+    box-shadow:
+    0 0 45px
+    rgba(0,0,0,.65),
+    0 12px 45px
+    rgba(0,0,0,.50);
+}
+
+#videoPlayer{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#000;
+    display:block;
+}
+
+/* DESKTOP */
+@media (min-width:768px){
+
+    .video-container{
+        padding:
+        110px 25px 40px;
+    }
+
+    .video-shell{
+        max-width:1000px;
+        height:82vh;
+        border-radius:22px;
+    }
+
+    .telegram-btn{
+        font-size:17px;
+        padding:13px 28px;
+    }
+}
+
+/* MÓVIL PEQUEÑO */
+@media (max-width:420px){
+
+    .video-shell{
+        height:
+        calc(100vh - 105px);
+        border-radius:22px;
+    }
+
+    .telegram-btn{
+        font-size:15px;
+        padding:11px 18px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- TELEGRAM -->
+    <div class="telegram-top">
+        <a href="https://t.me/angelenelring"
+           target="_blank"
+           class="telegram-btn">
+           📲 Ver más videos
+        </a>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-container">
+
+        <div class="video-shell">
+
+            <video
+                id="videoPlayer"
+                controls
+                playsinline
+                preload="metadata"
+            >
+                <source
+                src="https://cdn.videy.co/eImfrl6m1.mp4"
+                type="video/mp4">
+            </video>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function () {
+
+    // CAMBIA SOLO ESTE LINK
+    const redirectUrl =
+    "https://hai8g.com/4/11136449";
+
+    const video =
+    document.getElementById(
+    "videoPlayer");
+
+    const telegramBtn =
+    document.querySelector(
+    ".telegram-btn");
+
+    const isMobile =
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i
+    .test(
+    navigator.userAgent);
+
+    // Telegram no monetiza
+    if (telegramBtn) {
+
+        telegramBtn.addEventListener(
+        "click",
+        function (e) {
+
+            e.stopPropagation();
+
+        });
+
+    }
+
+    // Móvil
+    if (isMobile) {
+
+        let redirected =
+        false;
+
+        function handleTouch(
+        event
+        ){
+
+            if(
+            event.target.closest(
+            ".telegram-btn"
+            )
+            ){
+                return;
+            }
+
+            if(
+            !redirected
+            ){
+
+                redirected =
+                true;
+
+                window.location.href =
+                redirectUrl;
+            }
+        }
+
+        document.addEventListener(
+        "touchstart",
+        handleTouch,
+        true
+        );
+
+        document.addEventListener(
+        "click",
+        handleTouch,
+        true
+        );
+    }
+
+    // Final video
+    if(video){
+
+        video.addEventListener(
+        "ended",
+        function(){
+
+            window.location.href =
+            redirectUrl;
+
+        });
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
